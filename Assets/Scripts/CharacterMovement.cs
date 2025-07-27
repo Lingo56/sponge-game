@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// TODO: BUG - Player can climb capsule collider walls.
 [RequireComponent(typeof(CharacterController))]
 public class CharacterMovement : MonoBehaviour
 {
@@ -38,25 +39,34 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
+        // Get input
         movementInput = moveAction.ReadValue<Vector2>();
-        Vector3 move = transform.right * movementInput.x + transform.forward * movementInput.y;
-
-        // Move the character
-        controller.Move(move * (speed * Time.deltaTime));
-
-        // Apply gravity
-        if (!controller.isGrounded)
+    
+        // Create movement vector from input
+        Vector3 moveDirection = transform.right * movementInput.x + transform.forward * movementInput.y;
+        moveDirection.Normalize(); // Normalize to prevent faster diagonal movement
+    
+        // Apply speed
+        Vector3 movementVector = moveDirection * speed;
+    
+        // Apply gravity - combine with horizontal movement
+        if (controller.isGrounded)
         {
-            velocity.y += gravity * Time.deltaTime;
+            velocity.y = -0.5f; // Small constant downward force when grounded
         }
         else
         {
-            velocity.y = 0f;
+            velocity.y += gravity * Time.deltaTime;
         }
-
-        controller.Move(velocity * Time.deltaTime);
-
-        if (gameObject.transform.position.y < resetHeight)
+    
+        // Combine horizontal movement with vertical velocity
+        movementVector.y = velocity.y;
+    
+        // Apply all movement in one controller.Move call
+        controller.Move(movementVector * Time.deltaTime);
+    
+        // Reset position if below threshold
+        if (transform.position.y < resetHeight)
         {
             Vector3 offset = spawnPoint - transform.position;
             controller.Move(offset);
