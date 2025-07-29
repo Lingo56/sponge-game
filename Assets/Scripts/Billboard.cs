@@ -3,14 +3,19 @@ using UnityEngine;
 public class Billboard : MonoBehaviour
 {
     [SerializeField] private float scaleFactor = 3f; // Scale factor for the billboard
+    [SerializeField] private bool isBillboard = false; // Scale factor for the billboard
+    
     private Transform cam;
 
     void Start()
     {
-        Texture texture = GetComponent<Renderer>().material.mainTexture;
-        float aspectRatio = (float)texture.width / texture.height;
+        if (isBillboard)
+        {
+            Texture texture = GetComponent<Renderer>().material.mainTexture;
+            float aspectRatio = (float)texture.width / texture.height;
         
-        transform.localScale = new Vector3(aspectRatio * scaleFactor, scaleFactor, scaleFactor);
+            transform.localScale = new Vector3(aspectRatio * scaleFactor, scaleFactor, scaleFactor);
+        }
         
         cam = Camera.main.transform;
     }
@@ -20,9 +25,9 @@ public class Billboard : MonoBehaviour
         Vector3 camPosition = cam.position;
         camPosition.y = transform.position.y; // Ignore vertical angle
         transform.LookAt(camPosition);
-    
-        // Rotate 180 degrees around the up axis
-        transform.Rotate(0f, 180f, 0f);
+        
+        if (isBillboard)
+            transform.Rotate(0f, 180f, 0f);
     }
 
 }
