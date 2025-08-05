@@ -1433,7 +1433,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &146857314
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1488,15 +1488,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Platform Check
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b23f7750880ead24fbf8aa3dcbd1ddcc, type: 2}
+  m_sharedMaterial: {fileID: 942898619492787248, guid: b23f7750880ead24fbf8aa3dcbd1ddcc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4285417195
+  m_fontColor: {r: 0.9215687, g: 0.27450982, b: 0.43137258, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2871,8 +2871,8 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.554717, g: 0.23758633, b: 0.23758633, a: 1}
-  m_Intensity: 1.75
+  m_Color: {r: 0.9333334, g: 0.29803923, b: 0.41176474, a: 1}
+  m_Intensity: 1.25
   m_Range: 10.3
   m_SpotAngle: 70
   m_InnerSpotAngle: 7
@@ -3522,7 +3522,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &464488111
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3564,15 +3564,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Framerate
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b23f7750880ead24fbf8aa3dcbd1ddcc, type: 2}
+  m_sharedMaterial: {fileID: 942898619492787248, guid: b23f7750880ead24fbf8aa3dcbd1ddcc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4285417195
+  m_fontColor: {r: 0.9215687, g: 0.27450982, b: 0.43137258, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3827,8 +3827,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.554717, g: 0.23758633, b: 0.23758633, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.9333334, g: 0.29803923, b: 0.41176474, a: 1}
+  m_Intensity: 0.5
   m_Range: 2
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -5064,7 +5064,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1190704393
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5120,15 +5120,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Browser
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b23f7750880ead24fbf8aa3dcbd1ddcc, type: 2}
+  m_sharedMaterial: {fileID: 942898619492787248, guid: b23f7750880ead24fbf8aa3dcbd1ddcc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4285417195
+  m_fontColor: {r: 0.9215687, g: 0.27450982, b: 0.43137258, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6324,8 +6324,8 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.554717, g: 0.23758633, b: 0.23758633, a: 1}
-  m_Intensity: 1.75
+  m_Color: {r: 0.9333334, g: 0.29803923, b: 0.41176474, a: 1}
+  m_Intensity: 1.25
   m_Range: 10.3
   m_SpotAngle: 70
   m_InnerSpotAngle: 7
@@ -6508,8 +6508,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.554717, g: 0.23758633, b: 0.23758633, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.9333334, g: 0.29803923, b: 0.41176474, a: 1}
+  m_Intensity: 0.5
   m_Range: 2
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -6760,8 +6760,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.554717, g: 0.23758633, b: 0.23758633, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.9333334, g: 0.29803923, b: 0.41176474, a: 1}
+  m_Intensity: 0.5
   m_Range: 2
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
