@@ -1,0 +1,20 @@
+_mat2
+=====
+  Textures:
+    - P_magmared2
+        Offset: 0, 0.9833332896232605
+    - P_magmared2
+        Offset: 0, 0.9833332896232605
+        Scale: 2, 2
+    - P_sandnoise2mm
+        Offset: 0, 0.24583332240581512
+
+  Ambient Colors:
+    - 128, 128, 128, 50
+
+  Constant Colors:
+    - 0, 0, 0, 249
+
+  Color Registers:
+    - 42, 35, 34, 255
+    - 19, 18, 14, 255
