@@ -151,4 +151,6 @@ $RECYCLE.BIN/
 .idea/
 **/.idea/
 
+.vscode/
+
 # End of https://www.toptal.com/developers/gitignore/api/macos,unity,windows,linux

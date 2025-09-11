@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 public class MouseLook : MonoBehaviour
 {
     public float sensitivity = 0.5f;
-    [SerializeField] private float safariSensitivityMultiplier = 2.0f;
     [SerializeField] private float safariSmoothingFactor = 0.2f; // Lower is smoother (0.01-0.25 is a good range)
     [SerializeField] private bool applySmoothingToSafariOnly = true;
     
