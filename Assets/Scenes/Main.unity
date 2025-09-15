@@ -2796,6 +2796,44 @@ Transform:
   m_Children: []
   m_Father: {fileID: 412056344}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &174677330
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 174677331}
+  m_Layer: 5
+  m_Name: IntroText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &174677331
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174677330}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2019366388}
+  - {fileID: 200795152}
+  - {fileID: 1148493534}
+  m_Father: {fileID: 1960489341}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &175358078 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2847726887589583862, guid: 9394a0796de1045e98ac2300b1d52958, type: 3}
@@ -2848,12 +2886,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 200795151}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1960489341}
+  m_Father: {fileID: 174677331}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4840,10 +4878,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7281ceadee4a45a4850be77e06ba185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  introText: {fileID: 1148493535}
-  startFade: 0
-  endFade: 1
-  fadeLength: 0.25
+  introTextParent: {fileID: 174677330}
+  introPanel: {fileID: 980683242}
+  enterStartFade: 1
+  enterEndFade: 0
+  startFadeLength: 3
+  exitStartFade: 0
+  exitEndFade: 1
+  exitFadeLength: 4
 --- !u!4 &945156856 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 503413cc6eee309459f025520211bc49, type: 3}
@@ -5327,12 +5369,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1148493533}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1960489341}
+  m_Father: {fileID: 174677331}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5922,7 +5964,7 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
+  m_Height: 1.9
   m_Radius: 0.5
   m_SlopeLimit: 44
   m_StepOffset: 0.2
@@ -7121,9 +7163,7 @@ RectTransform:
   - {fileID: 464488111}
   - {fileID: 1190704393}
   - {fileID: 980683241}
-  - {fileID: 2019366388}
-  - {fileID: 200795152}
-  - {fileID: 1148493534}
+  - {fileID: 174677331}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -7156,12 +7196,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2019366387}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1960489341}
+  m_Father: {fileID: 174677331}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7188,7 +7228,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: find the right people
+  m_text: 'find the right people
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b23f7750880ead24fbf8aa3dcbd1ddcc, type: 2}
   m_sharedMaterial: {fileID: 942898619492787248, guid: b23f7750880ead24fbf8aa3dcbd1ddcc, type: 2}

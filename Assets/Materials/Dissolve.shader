@@ -4,6 +4,7 @@ Shader "UI/Dissolve"
     {
         _MainTex ("Texture", 2D) = "white" {}
         _NoiseTex ("Dissolve Noise", 2D) = "white" {}
+        _NoiseScale ("Noise Scale", Float) = 1.0
         _Dissolve ("Dissolve Threshold", Range(0,1)) = 0.5
         _Color ("Tint", Color) = (1,1,1,1)
     }
@@ -40,6 +41,7 @@ Shader "UI/Dissolve"
 
             sampler2D _MainTex;
             sampler2D _NoiseTex;
+            float _NoiseScale;
             float4 _MainTex_ST;
             float4 _NoiseTex_ST;
             float _Dissolve;
@@ -69,7 +71,7 @@ Shader "UI/Dissolve"
                 fixed4 col = fixed4(_Color.rgb, alpha * _Color.a);
                 
                 // Sample the noise texture
-                float noise = tex2D(_NoiseTex, i.uv).r;
+                float noise = tex2D(_NoiseTex, i.uv * _NoiseScale).r;
                 
                 // Apply dissolve effect
                 if (noise < _Dissolve)
