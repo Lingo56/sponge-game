@@ -4878,6 +4878,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7281ceadee4a45a4850be77e06ba185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterMovement: {fileID: 1513405062}
+  mouseLook: {fileID: 963194229}
   introTextParent: {fileID: 174677330}
   introPanel: {fileID: 980683242}
   enterStartFade: 1
@@ -4997,6 +4999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9297e64ab1ccf45f88b6a5c70cc43c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lookEnabled: 0
   sensitivity: 0.5
   safariSmoothingFactor: 0.2
   applySmoothingToSafariOnly: 1
@@ -6000,6 +6003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b5ce35caf904fda8a0bb6ada5c9c64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveEnabled: 0
   speed: 0.6
   gravity: -9.81
   resetHeight: -1
@@ -7113,7 +7117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
