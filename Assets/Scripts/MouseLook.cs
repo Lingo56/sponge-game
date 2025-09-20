@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 
 public class MouseLook : MonoBehaviour
 {
-    public float sensitivity = 0.5f;
+    public bool lookEnabled = false;
+
+    [SerializeField] private float sensitivity = 0.5f;
     [SerializeField] private float safariSmoothingFactor = 0.2f; // Lower is smoother (0.01-0.25 is a good range)
     [SerializeField] private bool applySmoothingToSafariOnly = true;
     
@@ -41,11 +44,13 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
+        if (!lookEnabled) return;
+
         Vector2 rawMouseDelta;
         #if !UNITY_EDITOR && UNITY_WEBGL
-            rawMouseDelta = new Vector2(GetMouseDeltaX(), GetMouseDeltaY());
+                    rawMouseDelta = new Vector2(GetMouseDeltaX(), GetMouseDeltaY());
         #else
-            rawMouseDelta = Mouse.current != null ? Mouse.current.delta.ReadValue() : Vector2.zero;
+                    rawMouseDelta = Mouse.current != null ? Mouse.current.delta.ReadValue() : Vector2.zero;
         #endif
 
         // Apply browser-specific sensitivity
@@ -58,19 +63,19 @@ public class MouseLook : MonoBehaviour
         #endif
 
         rawMouseDelta *= effectiveSensitivity;
-        
+
         // Determine if we should apply smoothing
         bool applySmoothing = (_isSafari && applySmoothingToSafariOnly) || !applySmoothingToSafariOnly;
-        
+
         Vector2 mouseDelta;
         if (applySmoothing)
         {
             // Set the target to the raw input
             _targetMouseDelta = rawMouseDelta;
-            
+
             // Smoothly interpolate current value toward target
             _currentMouseDelta = Vector2.Lerp(_currentMouseDelta, _targetMouseDelta, safariSmoothingFactor);
-            
+
             // Use smoothed value
             mouseDelta = _currentMouseDelta;
         }
@@ -89,4 +94,5 @@ public class MouseLook : MonoBehaviour
             transform.parent.Rotate(Vector3.up * mouseDelta.x);
         }
     }
+    
 }

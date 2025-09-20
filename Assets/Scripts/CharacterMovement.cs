@@ -1,14 +1,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// TODO: BUG - Player can climb capsule collider walls.
 [RequireComponent(typeof(CharacterController))]
 public class CharacterMovement : MonoBehaviour
 {
-    public float speed = 5f;
-    public float gravity = -9.81f;
-    public float resetHeight = -1f;
-    public Vector3 spawnPoint;
+    public bool moveEnabled = false;
+
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float gravity = -9.81f;
+    [SerializeField] private float resetHeight = -1f;
+    [SerializeField] private Vector3 spawnPoint;
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -39,6 +40,8 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
+        if (!moveEnabled) return;
+
         // Get input
         movementInput = moveAction.ReadValue<Vector2>();
     

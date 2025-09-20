@@ -7,23 +7,28 @@ using UnityEngine.UI;
 
 public class IntroManager : MonoBehaviour
 {
-    public GameObject introTextParent;
-    public Image introPanel;
-
-    public float enterStartFade;
-    public float enterEndFade;
-    public float startFadeLength;
-    public float exitStartFade;
-    public float exitEndFade;
-    public float exitFadeLength;
+    [SerializeField] private CharacterMovement characterMovement;
+    [SerializeField] private MouseLook mouseLook;
+    [SerializeField] private GameObject introTextParent;
+    [SerializeField] private Image introPanel;
+    [SerializeField] private float enterStartFade;
+    [SerializeField] private float enterEndFade;
+    [SerializeField] private float startFadeLength;
+    [SerializeField] private float exitStartFade;
+    [SerializeField] private float exitEndFade;
+    [SerializeField] private float exitFadeLength;
 
     private TMP_Text[] allTMPs;
 
     private InputAction startAction;
 
+    private bool canStart = false;
+
     void Start()
     {
         StartCoroutine(OnLoadEvent());
+        canStart = false;
+        setPlayerActions(false);
     }
 
     void Awake()
@@ -36,7 +41,7 @@ public class IntroManager : MonoBehaviour
 
     void Update()
     {
-        if (startAction.WasPressedThisFrame())
+        if (canStart && startAction.WasPressedThisFrame())
         {
             StartCoroutine(PlayerStartEvent());
         }
@@ -51,6 +56,8 @@ public class IntroManager : MonoBehaviour
             tmpObject.fontMaterial = new Material(tmpObject.fontSharedMaterial);
             yield return StartCoroutine(FadeUI(enterStartFade, enterEndFade, startFadeLength, tmpObject));
         }
+
+        canStart = true;
     }
 
     IEnumerator PlayerStartEvent()
@@ -61,6 +68,8 @@ public class IntroManager : MonoBehaviour
         {
             StartCoroutine(FadeUI(exitStartFade, exitEndFade, exitFadeLength, tmpObject));
         }
+        
+        setPlayerActions(true);
         yield break;
     }
 
@@ -84,7 +93,7 @@ public class IntroManager : MonoBehaviour
         // Ensure final value is set
         mat.SetFloat("_Dissolve", endValue);
     }
-    
+
     IEnumerator FadeUI(float startValue, float endValue, float duration, Material mat)
     {
         float elapsed = 0f;
@@ -98,5 +107,11 @@ public class IntroManager : MonoBehaviour
             yield return null;
         }
         mat.SetFloat("_Dissolve", endValue);
+    }
+
+    void setPlayerActions(bool state)
+    {
+        characterMovement.moveEnabled = state;
+        mouseLook.lookEnabled = state;
     }
 }
