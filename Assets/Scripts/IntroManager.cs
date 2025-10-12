@@ -62,15 +62,20 @@ public class IntroManager : MonoBehaviour
 
     IEnumerator PlayerStartEvent()
     {
+        // Start fading the intro panel
         StartCoroutine(FadeUI(exitStartFade, exitEndFade, exitFadeLength, introPanel.material));
 
+        // Start fading all TMP_Text objects
         foreach (var tmpObject in allTMPs)
         {
             StartCoroutine(FadeUI(exitStartFade, exitEndFade, exitFadeLength, tmpObject));
         }
-        
+
+        // Wait for the duration of the longest fade
+        yield return new WaitForSeconds(exitFadeLength);
+
+        // Enable player actions
         setPlayerActions(true);
-        yield break;
     }
 
     IEnumerator FadeUI(float startValue, float endValue, float duration, TMP_Text tmp_asset)

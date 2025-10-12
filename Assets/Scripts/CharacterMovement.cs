@@ -4,18 +4,19 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class CharacterMovement : MonoBehaviour
 {
-    public bool moveEnabled = false;
-
-    [SerializeField] private float speed = 5f;
-    [SerializeField] private float gravity = -9.81f;
-    [SerializeField] private float resetHeight = -1f;
-    [SerializeField] private Vector3 spawnPoint;
+    public float speed = 5f;
+    public float gravity = -9.81f;
+    public float resetHeight = -1f;
+    public Vector3 spawnPoint;
 
     private CharacterController controller;
     private Vector3 velocity;
     private Vector2 movementInput;
     private InputAction moveAction;
     private PlayerControls playerControls;
+
+    // Add moveEnabled property
+    public bool moveEnabled { get; set; } = true;
 
     private void Awake()
     {
@@ -40,7 +41,7 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
-        if (!moveEnabled) return;
+        if (!moveEnabled) return; // Disable movement if moveEnabled is false
 
         // Get input
         movementInput = moveAction.ReadValue<Vector2>();
