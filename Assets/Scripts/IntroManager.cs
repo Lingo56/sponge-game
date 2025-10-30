@@ -1,16 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.UI;
 
 public class IntroManager : MonoBehaviour
 {
-    [SerializeField] private CharacterMovement characterMovement;
-    [SerializeField] private MouseLook mouseLook;
     [SerializeField] private GameObject introTextParent;
     [SerializeField] private Image introPanel;
+    [SerializeField] private MouseLook mouseControl;
     [SerializeField] private float enterStartFade;
     [SerializeField] private float enterEndFade;
     [SerializeField] private float startFadeLength;
@@ -19,69 +16,64 @@ public class IntroManager : MonoBehaviour
     [SerializeField] private float exitFadeLength;
 
     private TMP_Text[] allTMPs;
+    private bool canStartGameInteract;
 
-    private InputAction startAction;
-
-    private bool canStart = false;
-
-    void Start()
+    private void Start()
     {
-        StartCoroutine(OnLoadEvent());
-        canStart = false;
-        setPlayerActions(false);
+        StartCoroutine(HandleIntroFadeIn());
     }
 
-    void Awake()
+    private void OnEnable()
     {
-        allTMPs = introTextParent.GetComponentsInChildren<TMP_Text>(true);
-
-        startAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/e");
-        startAction.Enable();
+        InputHandler.OnInteract += HandleIntroInteraction;
     }
 
-    void Update()
+    private void OnDisable()
     {
-        if (canStart && startAction.WasPressedThisFrame())
+        InputHandler.OnInteract -= HandleIntroInteraction;
+    }
+
+    private void HandleIntroInteraction()
+    {
+        if (canStartGameInteract)
         {
-            StartCoroutine(PlayerStartEvent());
+            StartCoroutine(HandleGameStartFadeOut());
         }
     }
 
-    IEnumerator OnLoadEvent()
+    private IEnumerator HandleIntroFadeIn()
     {
         StartCoroutine(FadeUI(enterEndFade, enterEndFade, startFadeLength, introPanel.material));
 
-        foreach (var tmpObject in allTMPs)
+        foreach (var tmpObject in introTextParent.GetComponentsInChildren<TMP_Text>(true))
         {
             tmpObject.fontMaterial = new Material(tmpObject.fontSharedMaterial);
             yield return StartCoroutine(FadeUI(enterStartFade, enterEndFade, startFadeLength, tmpObject));
         }
 
-        canStart = true;
+        canStartGameInteract = true;
     }
 
-    IEnumerator PlayerStartEvent()
+    private IEnumerator HandleGameStartFadeOut()
     {
-        // Start fading the intro panel
+        canStartGameInteract = false;
+
         StartCoroutine(FadeUI(exitStartFade, exitEndFade, exitFadeLength, introPanel.material));
 
-        // Start fading all TMP_Text objects
-        foreach (var tmpObject in allTMPs)
+        foreach (var tmpObject in introTextParent.GetComponentsInChildren<TMP_Text>(true))
         {
             StartCoroutine(FadeUI(exitStartFade, exitEndFade, exitFadeLength, tmpObject));
         }
 
-        // Wait for the duration of the longest fade
         yield return new WaitForSeconds(exitFadeLength);
-
-        // Enable player actions
-        setPlayerActions(true);
+        GameEvents.PlayerStartGame(); // Trigger the game start event
+        mouseControl.ToggleMouseLook(); // TODO: Set this up to be less jank -.-
     }
 
-    IEnumerator FadeUI(float startValue, float endValue, float duration, TMP_Text tmp_asset)
+    private IEnumerator FadeUI(float startValue, float endValue, float duration, TMP_Text tmpAsset)
     {
         float elapsed = 0f;
-        var mat = tmp_asset.fontMaterial;
+        var mat = tmpAsset.fontMaterial;
         if (!mat.HasProperty("_Dissolve"))
         {
             Debug.LogError($"Material does not have _Dissolve property! Shader in use: {mat.shader.name}");
@@ -90,16 +82,14 @@ public class IntroManager : MonoBehaviour
         while (elapsed < duration)
         {
             float value = Mathf.Lerp(startValue, endValue, elapsed / duration);
-            Debug.Log($"Setting _Dissolve to {value}");
             mat.SetFloat("_Dissolve", value);
             elapsed += Time.deltaTime;
             yield return null;
         }
-        // Ensure final value is set
         mat.SetFloat("_Dissolve", endValue);
     }
 
-    IEnumerator FadeUI(float startValue, float endValue, float duration, Material mat)
+    private IEnumerator FadeUI(float startValue, float endValue, float duration, Material mat)
     {
         float elapsed = 0f;
         if (!mat.HasProperty("_Dissolve"))
@@ -112,11 +102,5 @@ public class IntroManager : MonoBehaviour
             yield return null;
         }
         mat.SetFloat("_Dissolve", endValue);
-    }
-
-    void setPlayerActions(bool state)
-    {
-        characterMovement.moveEnabled = state;
-        mouseLook.lookEnabled = state;
     }
 }

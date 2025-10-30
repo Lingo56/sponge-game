@@ -4834,60 +4834,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1030567640}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!1 &932386907
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 932386908}
-  - component: {fileID: 932386909}
-  m_Layer: 0
-  m_Name: IntroManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &932386908
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 932386907}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1172530607}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &932386909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 932386907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7281ceadee4a45a4850be77e06ba185, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterMovement: {fileID: 1513405062}
-  mouseLook: {fileID: 963194229}
-  introTextParent: {fileID: 174677330}
-  introPanel: {fileID: 980683242}
-  enterStartFade: 1
-  enterEndFade: 0
-  startFadeLength: 3
-  exitStartFade: 0
-  exitEndFade: 1
-  exitFadeLength: 4
 --- !u!4 &945156856 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 503413cc6eee309459f025520211bc49, type: 3}
@@ -4999,10 +4945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9297e64ab1ccf45f88b6a5c70cc43c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookEnabled: 0
   sensitivity: 0.5
-  safariSmoothingFactor: 0.2
-  applySmoothingToSafariOnly: 1
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5490,6 +5433,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1172530607}
+  - component: {fileID: 1172530609}
+  - component: {fileID: 1172530608}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -5509,10 +5454,42 @@ Transform:
   m_LocalPosition: {x: -49.51339, y: 8.094607, z: 6.2301717}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 932386908}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1172530608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172530606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d3c77d0700d0654b8203c85bb35f977, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1172530609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172530606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7281ceadee4a45a4850be77e06ba185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  introTextParent: {fileID: 174677330}
+  introPanel: {fileID: 980683242}
+  mouseControl: {fileID: 963194229}
+  enterStartFade: 1
+  enterEndFade: 0
+  startFadeLength: 3
+  exitStartFade: 0
+  exitEndFade: 1
+  exitFadeLength: 1
 --- !u!1 &1190704392
 GameObject:
   m_ObjectHideFlags: 0
@@ -5983,7 +5960,7 @@ Transform:
   m_GameObject: {fileID: 1513405059}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.976296, z: 0, w: -0.21643949}
-  m_LocalPosition: {x: -58, y: 3, z: 8}
+  m_LocalPosition: {x: -58, y: 2, z: 8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6003,7 +5980,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b5ce35caf904fda8a0bb6ada5c9c64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveEnabled: 0
   speed: 0.6
   gravity: -9.81
   resetHeight: -1
