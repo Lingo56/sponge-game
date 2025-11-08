@@ -1,3 +1,4 @@
+using Events;
 using UnityEngine;
 using UnityEngine.InputSystem;
     
@@ -5,21 +6,29 @@ public class MouseLook : MonoBehaviour
 {
     [SerializeField] private float sensitivity = 0.5f;
     private float _xRotation;
-    private bool lookEnabled = false;
+    private bool lookEnabled;
 
     private void OnEnable()
     {
-        InputHandler.OnToggleMouseLook += ToggleMouseLook;
+        GameEvents.OnEnableMouseLook += EnableMouseLook;
+        GameEvents.OnDisableMouseLook += DisableMouseLook;
     }
 
     private void OnDisable()
     {
-        InputHandler.OnToggleMouseLook -= ToggleMouseLook;
+        GameEvents.OnEnableMouseLook -= EnableMouseLook;
+        GameEvents.OnDisableMouseLook -= DisableMouseLook;
     }
 
-    public void ToggleMouseLook()
+    private void EnableMouseLook()
     {
-        lookEnabled = !lookEnabled; // Toggle the state
+        Debug.Log("Mouse look enabled");
+        lookEnabled = true;
+    }
+
+    private void DisableMouseLook()
+    {
+        lookEnabled = false;
     }
 
     void Update()

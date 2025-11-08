@@ -1,13 +1,14 @@
+using Events;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 public class CharacterMovement : MonoBehaviour
 {
-    public float speed = 5f;
-    public float gravity = -9.81f;
-    public float resetHeight = -1f;
-    public Vector3 spawnPoint;
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float gravity = -9.81f;
+    [SerializeField] private float resetHeight = -1f;
+    [SerializeField] private Vector3 spawnPoint;
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -16,7 +17,7 @@ public class CharacterMovement : MonoBehaviour
     private PlayerControls playerControls;
 
     // Add moveEnabled property
-    public bool moveEnabled { get; set; } = true;
+    private bool moveEnabled = true;
 
     private void Awake()
     {
@@ -25,12 +26,16 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnEnable()
     {
+        GameEvents.OnEnablePlayerMovement += EnablePlayerMovement;
+        GameEvents.OnDisablePlayerMovement += DisablePlayerMovement;
         moveAction = playerControls.Player.Move;
         moveAction.Enable();
     }
 
     private void OnDisable()
     {
+        GameEvents.OnEnablePlayerMovement -= EnablePlayerMovement;
+        GameEvents.OnDisablePlayerMovement -= DisablePlayerMovement;
         moveAction.Disable();
     }
 
@@ -39,6 +44,16 @@ public class CharacterMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
     }
 
+    private void EnablePlayerMovement()
+    {
+        moveEnabled = true;
+    }
+    
+    private void DisablePlayerMovement()
+    {
+        moveEnabled = false;
+    }
+    
     void Update()
     {
         if (!moveEnabled) return; // Disable movement if moveEnabled is false
