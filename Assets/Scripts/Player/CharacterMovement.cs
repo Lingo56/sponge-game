@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class CharacterMovement : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
+    [SerializeField] private float speed = 0.6f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float resetHeight = -1f;
     [SerializeField] private Vector3 spawnPoint;

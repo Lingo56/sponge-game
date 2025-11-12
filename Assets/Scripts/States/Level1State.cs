@@ -19,13 +19,17 @@ public class Level1State : MonoBehaviour
     
     private void StartLevelState()
     {
-        Debug.Log("Entering Level1...");
         GameEvents.EnablePlayerMovement();
         GameEvents.EnableMouseLook();
     }
 
+    // TODO: Make it so that this starts the next state when interacting with the right spot
+    // Start with it being in the right spot then maybe implement a hover system 
     private void HandleLevelInteraction()
     {
-        throw new System.NotImplementedException();
+        if (true)
+        {
+            GameEvents.StartNextGameState(); // Trigger the game start event
+        }
     }
 }

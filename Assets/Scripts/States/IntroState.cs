@@ -1,5 +1,6 @@
 using System.Collections;
 using Events;
+using Player;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,9 +31,14 @@ namespace States
 
         private void OnDisable()
         {
-            DisableIntroTextMaterials();
             GameEvents.OnBeginIntro -= StartIntroState;
             InputHandler.OnInteract -= HandleIntroInteraction;
+            
+            // Only attempt cleanup if objects still exist (not destroyed during shutdown)
+            if (introPanel != null || introTextParent != null)
+            {
+                DisableIntroTextMaterials();
+            }
         }
         
         private void StartIntroState()
@@ -118,20 +124,35 @@ namespace States
         private void InitializeIntroTextMaterials()
         {
             // Set panel to fully visible immediately
-            introPanel.material.SetFloat("_Dissolve", 0);
+            if (introPanel && introPanel.material)
+            {
+                introPanel.material.SetFloat("_Dissolve", 0);
+            }
         }
         
-        // TODO: This is acting buggy when entering and leaving play mode
         private void DisableIntroTextMaterials()
         {
-            // Set panel to fully invisible
-            introPanel.material.SetFloat("_Dissolve", 1);
-    
-            // Set all text to invisible
-            foreach (var tmpObject in introTextParent.GetComponentsInChildren<TMP_Text>(true))
+            // Set panel to fully invisible (check for null in case it's destroyed)
+            if (introPanel != null && introPanel.material != null)
             {
+                introPanel.material.SetFloat("_Dissolve", 1);
+            }
+    
+            // Set all text to invisible (check for null in case it's destroyed)
+            if (introTextParent == null) return;
+            
+            var tmpChildren = introTextParent.GetComponentsInChildren<TMP_Text>(true);
+            if (tmpChildren == null) return;
+            
+            foreach (var tmpObject in tmpChildren)
+            {
+                if (tmpObject == null || tmpObject.fontSharedMaterial == null) continue;
+                
                 tmpObject.fontMaterial = new Material(tmpObject.fontSharedMaterial);
-                tmpObject.fontMaterial.SetFloat("_Dissolve", 1);
+                if (tmpObject.fontMaterial != null && tmpObject.fontMaterial.HasProperty("_Dissolve"))
+                {
+                    tmpObject.fontMaterial.SetFloat("_Dissolve", 1);
+                }
             }
         }
     }

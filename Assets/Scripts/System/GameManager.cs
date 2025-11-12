@@ -68,13 +68,11 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.Level2:
-                Debug.Log("Entering Level2...");
                 GameEvents.BeginLevel2();
                 break;
 
             case GameState.End:
-                Debug.Log("Entering End state...");
-                GameEvents.BeginLevelEnding();
+                GameEvents.BeginEnding();
                 break;
 
             default:

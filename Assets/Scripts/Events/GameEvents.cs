@@ -1,4 +1,5 @@
 using System;
+using Objects;
 using UnityEngine;
 
 namespace Events
@@ -16,21 +17,21 @@ namespace Events
         public static void BeginIntro() => OnBeginIntro?.Invoke();
         public static void BeginLevel1() => OnBeginLevel1?.Invoke();
         public static void BeginLevel2() => OnBeginLevel2?.Invoke();
-        public static void BeginLevelEnding() => OnBeginLevelEnding?.Invoke();
+        public static void BeginEnding() => OnBeginLevelEnding?.Invoke();
         
         // Input Events
         public static event Action OnEnableMouseLook;
         public static event Action OnEnablePlayerMovement;
         public static event Action OnDisableMouseLook;
         public static event Action OnDisablePlayerMovement;        
+        public static event Action<IInteractable> OnInteractableHoverEnter;
+        public static event Action<IInteractable> OnInteractableHoverExit;
         
-        public static void EnableMouseLook()
-        {
-            Debug.Log("EnableMouseLook event invoked");
-            OnEnableMouseLook?.Invoke();
-        }
+        public static void EnableMouseLook() => OnEnableMouseLook?.Invoke();
         public static void EnablePlayerMovement() => OnEnablePlayerMovement?.Invoke();
         public static void DisableMouseLook() => OnDisableMouseLook?.Invoke();
         public static void DisablePlayerMovement() => OnDisablePlayerMovement?.Invoke();
+        public static void InteractableHoverEnter(IInteractable interactable) => OnInteractableHoverEnter?.Invoke(interactable);
+        public static void InteractableHoverExit(IInteractable interactable) => OnInteractableHoverExit?.Invoke(interactable);
     }
 }
