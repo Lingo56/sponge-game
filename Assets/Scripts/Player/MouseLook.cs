@@ -1,6 +1,4 @@
-using System;
 using Events;
-using Objects;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,7 +11,7 @@ namespace Player
         private bool lookEnabled;
         [SerializeField] private Camera playerCamera;
         
-        private IInteractable currentHovered;
+        private InteractableComponent currentHovered;
         
         private void Start()
         {
@@ -53,10 +51,10 @@ namespace Player
             transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
             transform.parent.Rotate(Vector3.up * (mouseDelta.x * sensitivity));
             
-            IInteractable hitInteractable = null;
+            InteractableComponent hitInteractable = null;
             if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out var hit, 3f))
             {
-                if (hit.collider != null && hit.collider.TryGetComponent<IInteractable>(out var interactable))
+                if (hit.collider && hit.collider.TryGetComponent<InteractableComponent>(out var interactable))
                 {
                     hitInteractable = interactable;
                 }
@@ -64,12 +62,12 @@ namespace Player
 
             if (hitInteractable != currentHovered)
             {
-                if (currentHovered != null)
+                if (currentHovered)
                 {
                     GameEvents.InteractableHoverExit(currentHovered);
                 }
 
-                if (hitInteractable != null)
+                if (hitInteractable)
                 {
                     GameEvents.InteractableHoverEnter(hitInteractable);
                 }

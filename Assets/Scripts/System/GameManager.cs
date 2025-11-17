@@ -41,15 +41,16 @@ public class GameManager : MonoBehaviour
 
     private void HandleStartNextGameState()
     {
-        if (currentStateIndex < gameStates.Count - 1)
+        currentStateIndex++;
+        
+        // Wrap around to the first state if we've reached the end
+        if (currentStateIndex >= gameStates.Count)
         {
-            currentStateIndex++;
-            TransitionToState(gameStates[currentStateIndex]);
+            currentStateIndex = 0;
+            Debug.Log("Wrapping back to the first state.");
         }
-        else
-        {
-            Debug.Log("No more game states to transition to.");
-        }
+        
+        TransitionToState(gameStates[currentStateIndex]);
     }
 
     private void TransitionToState(GameState state)

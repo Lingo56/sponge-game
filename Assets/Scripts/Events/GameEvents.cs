@@ -24,14 +24,14 @@ namespace Events
         public static event Action OnEnablePlayerMovement;
         public static event Action OnDisableMouseLook;
         public static event Action OnDisablePlayerMovement;        
-        public static event Action<IInteractable> OnInteractableHoverEnter;
-        public static event Action<IInteractable> OnInteractableHoverExit;
+        public static event Action<InteractableComponent> OnInteractableHoverEnter;
+        public static event Action<InteractableComponent> OnInteractableHoverExit;
         
         public static void EnableMouseLook() => OnEnableMouseLook?.Invoke();
         public static void EnablePlayerMovement() => OnEnablePlayerMovement?.Invoke();
         public static void DisableMouseLook() => OnDisableMouseLook?.Invoke();
         public static void DisablePlayerMovement() => OnDisablePlayerMovement?.Invoke();
-        public static void InteractableHoverEnter(IInteractable interactable) => OnInteractableHoverEnter?.Invoke(interactable);
-        public static void InteractableHoverExit(IInteractable interactable) => OnInteractableHoverExit?.Invoke(interactable);
+        public static void InteractableHoverEnter(InteractableComponent interactable) => OnInteractableHoverEnter?.Invoke(interactable);
+        public static void InteractableHoverExit(InteractableComponent interactable) => OnInteractableHoverExit?.Invoke(interactable);
     }
 }
