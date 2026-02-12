@@ -8,7 +8,7 @@ namespace Player
     {
         [SerializeField] private float sensitivity = 0.5f;
         private float _xRotation;
-        private bool lookEnabled;
+        [SerializeField] private bool lookEnabled;
         [SerializeField] private Camera playerCamera;
         
         private InteractableComponent currentHovered;

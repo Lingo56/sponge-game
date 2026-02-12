@@ -2918,7 +2918,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: save who you can
+  m_text: but would a sailor ever receive it
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b23f7750880ead24fbf8aa3dcbd1ddcc, type: 2}
   m_sharedMaterial: {fileID: 942898619492787248, guid: b23f7750880ead24fbf8aa3dcbd1ddcc, type: 2}
@@ -7461,9 +7461,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'find the right people
-
-'
+  m_text: sirens promise warmth
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b23f7750880ead24fbf8aa3dcbd1ddcc, type: 2}
   m_sharedMaterial: {fileID: 942898619492787248, guid: b23f7750880ead24fbf8aa3dcbd1ddcc, type: 2}
