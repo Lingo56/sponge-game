@@ -1,19 +1,19 @@
 using Events;
 using UnityEngine;
 
-public class Level1State : MonoBehaviour
+public class Level2State : MonoBehaviour
 {
     private bool advanceInteracted = false;
     [SerializeField] private GameObject spawnPoint;
     
     private void OnEnable()
     {
-        GameEvents.OnBeginLevel1 += StartLevelState;
+        GameEvents.OnBeginLevel2 += StartLevelState;
     }
 
     private void OnDisable()
     {
-        GameEvents.OnBeginLevel1 -= StartLevelState;
+        GameEvents.OnBeginLevel2 -= StartLevelState;
     }
     
     private void StartLevelState()

@@ -8,20 +8,20 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float speed = 0.6f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float resetHeight = -1f;
-    [SerializeField] private Vector3 spawnPoint;
+    private GameObject spawnPoint;
 
     private CharacterController controller;
     private Vector3 velocity;
     private Vector2 movementInput;
     private InputAction moveAction;
     private PlayerControls playerControls;
-
-    // Add moveEnabled property
+    
     private bool moveEnabled = true;
 
     private void Awake()
     {
         playerControls = new PlayerControls();
+        GameEvents.OnSetPlayerSpawnPoint += MoveToSpawnPoint;
     }
 
     private void OnEnable()
@@ -36,12 +36,18 @@ public class CharacterMovement : MonoBehaviour
     {
         GameEvents.OnEnablePlayerMovement -= EnablePlayerMovement;
         GameEvents.OnDisablePlayerMovement -= DisablePlayerMovement;
+        GameEvents.OnSetPlayerSpawnPoint -= MoveToSpawnPoint;
         moveAction.Disable();
     }
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
+
+        if (spawnPoint != null && controller != null)
+        {
+             TeleportToPosition(spawnPoint.transform.position);
+        }
     }
 
     private void EnablePlayerMovement()
@@ -53,6 +59,34 @@ public class CharacterMovement : MonoBehaviour
     {
         moveEnabled = false;
     }
+    
+
+    private void MoveToSpawnPoint(GameObject spawn)
+    {
+        if (spawn == null) return;
+        spawnPoint = spawn;
+
+         if (controller != null)
+         {
+             TeleportToPosition(spawn.transform.position);
+         }
+     }
+    
+     private void TeleportToPosition(Vector3 position)
+     {
+         velocity = Vector3.zero;
+
+         if (controller != null)
+         {
+             controller.enabled = false;
+             transform.position = position;
+             controller.enabled = true;
+         }
+         else
+         {
+             transform.position = position;
+         }
+     }
     
     void Update()
     {
@@ -87,8 +121,7 @@ public class CharacterMovement : MonoBehaviour
         // Reset position if below threshold
         if (transform.position.y < resetHeight)
         {
-            Vector3 offset = spawnPoint - transform.position;
-            controller.Move(offset);
+            MoveToSpawnPoint(spawnPoint);
         }
     }
 }

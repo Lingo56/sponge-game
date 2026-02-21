@@ -23,7 +23,10 @@ namespace Events
         public static event Action OnEnableMouseLook;
         public static event Action OnEnablePlayerMovement;
         public static event Action OnDisableMouseLook;
-        public static event Action OnDisablePlayerMovement;        
+        public static event Action OnDisablePlayerMovement;
+        public static event Action<GameObject> OnSetPlayerSpawnPoint;
+        // Added position-based spawn event to avoid referencing prefab assets in inspector
+        public static event Action<Vector3> OnSetPlayerSpawnPosition;
         public static event Action<InteractableComponent> OnInteractableHoverEnter;
         public static event Action<InteractableComponent> OnInteractableHoverExit;
         
@@ -31,6 +34,8 @@ namespace Events
         public static void EnablePlayerMovement() => OnEnablePlayerMovement?.Invoke();
         public static void DisableMouseLook() => OnDisableMouseLook?.Invoke();
         public static void DisablePlayerMovement() => OnDisablePlayerMovement?.Invoke();
+        public static void SetPlayerSpawnPoint(GameObject spawnPoint) => OnSetPlayerSpawnPoint?.Invoke(spawnPoint);
+        public static void SetPlayerSpawnPointPosition(Vector3 spawnPosition) => OnSetPlayerSpawnPosition?.Invoke(spawnPosition);
         public static void InteractableHoverEnter(InteractableComponent interactable) => OnInteractableHoverEnter?.Invoke(interactable);
         public static void InteractableHoverExit(InteractableComponent interactable) => OnInteractableHoverExit?.Invoke(interactable);
     }
