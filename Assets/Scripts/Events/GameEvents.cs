@@ -13,11 +13,31 @@ namespace Events
         public static event Action OnBeginLevel2; 
         public static event Action OnBeginLevelEnding; 
         
-        public static void StartNextGameState() => OnStartNextGameState?.Invoke();
-        public static void BeginIntro() => OnBeginIntro?.Invoke();
-        public static void BeginLevel1() => OnBeginLevel1?.Invoke();
-        public static void BeginLevel2() => OnBeginLevel2?.Invoke();
-        public static void BeginEnding() => OnBeginLevelEnding?.Invoke();
+        public static void StartNextGameState() 
+        { 
+            if (OnStartNextGameState == null) Debug.Log("No subscribers for StartNextGameState");
+            OnStartNextGameState?.Invoke(); 
+        }
+        public static void BeginIntro() 
+        { 
+            if (OnBeginIntro == null) Debug.Log("No subscribers for BeginIntro");
+            OnBeginIntro?.Invoke(); 
+        }
+        public static void BeginLevel1() 
+        { 
+            if (OnBeginLevel1 == null) Debug.Log("No subscribers for BeginLevel1");
+            OnBeginLevel1?.Invoke(); 
+        }
+        public static void BeginLevel2() 
+        { 
+            if (OnBeginLevel2 == null) Debug.Log("No subscribers for BeginLevel2");
+            OnBeginLevel2?.Invoke(); 
+        }
+        public static void BeginEnding() 
+        { 
+            if (OnBeginLevelEnding == null) Debug.Log("No subscribers for BeginEnding");
+            OnBeginLevelEnding?.Invoke(); 
+        }
         
         // Input Events
         public static event Action OnEnableMouseLook;
