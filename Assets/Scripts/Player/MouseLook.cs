@@ -1,3 +1,4 @@
+// File: `Assets/Scripts/Player/MouseLook.cs`
 using Events;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,9 +11,7 @@ namespace Player
         private float _xRotation;
         [SerializeField] private bool lookEnabled;
         [SerializeField] private Camera playerCamera;
-        
-        private InteractableComponent currentHovered;
-        
+
         private void Start()
         {
             Cursor.visible = false;
@@ -49,31 +48,8 @@ namespace Player
             _xRotation = Mathf.Clamp(_xRotation, -90f, 90f);
 
             transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
-            transform.parent.Rotate(Vector3.up * (mouseDelta.x * sensitivity));
-            
-            InteractableComponent hitInteractable = null;
-            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out var hit, 3f))
-            {
-                if (hit.collider && hit.collider.TryGetComponent<InteractableComponent>(out var interactable))
-                {
-                    hitInteractable = interactable;
-                }
-            }
-
-            if (hitInteractable != currentHovered)
-            {
-                if (currentHovered)
-                {
-                    GameEvents.InteractableHoverExit(currentHovered);
-                }
-
-                if (hitInteractable)
-                {
-                    GameEvents.InteractableHoverEnter(hitInteractable);
-                }
-
-                currentHovered = hitInteractable;
-            }
+            if (transform.parent != null)
+                transform.parent.Rotate(Vector3.up * (mouseDelta.x * sensitivity));
         }
     }
 }
