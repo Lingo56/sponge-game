@@ -9,11 +9,13 @@ public class Level1State : MonoBehaviour
     private void OnEnable()
     {
         GameEvents.OnBeginLevel1 += StartLevelState;
+        InputHandler.OnInteract += HandleState1Interaction;
     }
 
     private void OnDisable()
     {
         GameEvents.OnBeginLevel1 -= StartLevelState;
+        InputHandler.OnInteract += HandleState1Interaction;
     }
     
     private void StartLevelState()
@@ -21,6 +23,11 @@ public class Level1State : MonoBehaviour
         GameEvents.EnablePlayerMovement();
         GameEvents.EnableMouseLook();
         GameEvents.SetPlayerSpawnPoint(spawnPoint);
+    }
+
+    private void HandleState1Interaction()
+    {
+        
     }
 
     public string LevelAdvanceString { get; }
